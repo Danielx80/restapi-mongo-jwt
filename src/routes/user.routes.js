@@ -16,4 +16,6 @@ router.post(
   userCtrl.createUser
 );
 
+router.delete('/:userId', userCtrl.deleteUser)
+
 export default router;

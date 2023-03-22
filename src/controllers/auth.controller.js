@@ -9,6 +9,7 @@ export const signUp = async (req, res) => {
   const newUser = new User({
     username,
     email,
+    roles,
     // para encryptar la contraseña
     password: await User.encryptPassword(password),
   });
