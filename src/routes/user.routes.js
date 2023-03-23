@@ -1,10 +1,6 @@
 import { Router } from "express";
 import * as userCtrl from "../controllers/user.controller";
-import {
-  isAdmin,
-  verifyToken,
-  checkRolesExisted,
-} from "../middlewares/index";
+import { isAdmin, verifyToken, checkRolesExisted } from "../middlewares/index";
 
 const router = Router();
 
@@ -15,7 +11,8 @@ router.post(
   [verifyToken, isAdmin, checkRolesExisted],
   userCtrl.createUser
 );
+router.put("/:userId", userCtrl.updateUser);
 
-router.delete('/:userId', userCtrl.deleteUser)
+router.delete("/:userId", userCtrl.deleteUser);
 
 export default router;

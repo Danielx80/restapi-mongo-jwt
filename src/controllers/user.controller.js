@@ -10,7 +10,7 @@ export const createUser = async (req, res) => {
     // Encrypar contraseña
     password: await User.encryptPassword(password),
   });
-    // para agregar un role por defecto o generarlo
+  // para agregar un role por defecto o generarlo
   if (roles) {
     const foundRoles = await Role.find({ name: { $in: roles } });
     newUser.roles = foundRoles.map((role) => role._id);
@@ -33,9 +33,12 @@ export const getUserById = async (req, res) => {
   res.status(200).json(user);
 };
 
-// export const updateUser = async (req, res) => {
-//   // const user =await
-// };
+export const updateUser = async (req, res) => {
+  const updateUser = await User.findByIdAndUpdate(req.params.userId, req.body, {
+    new: true,
+  });
+  res.status(200).json(updateUser);
+};
 
 export const deleteUser = async (req, res) => {
   const { userId } = req.params;
